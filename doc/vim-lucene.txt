@@ -1,0 +1,60 @@
+*vim-lucene.txt*
+                                                                  *vim-lucene*
+
+==============================================================================
+CONTENTS                                                 *vim-lucene-contents*
+  1. Introduction...........................................|vim-lucene-intro|
+  2. Commands............................................|vim-lucene-commands|
+  3. Functions..........................................|vim-lucene-functions|
+
+==============================================================================
+INTRODUCTION                                                *vim-lucene-intro*
+
+This is a folder search plugin. It uses Lucene to index a folder, via the
+https://github.com/cosminadrianpopescu/folder-indexer plugin, to index the
+folder and then it sends query to the server.
+
+In order to use it, first download and compile the `folder-indexer` plugin,
+then start it. Set the server port in the |g:Lucene_port| variable and then
+you can start searching for terms inside files.
+
+==============================================================================
+COMMANDS                                                 *vim-lucene-commands*
+
+:LuceneSearch {argument}                                       *:LuceneSearch*
+  Performs a Lucene wild search  {argument} The query to search for
+
+:LuceneSearchFromHere {argument}                       *:LuceneSearchFromHere*
+  Performs a Lucene wild search starting from the current buffer's folder
+  {argument} The query to search for
+
+:LuceneSearchFromFolder {argument}                   *:LuceneSearchFromFolder*
+  Performs a Lucene wild search starting from the specified folder. The user
+  will be asked for the folder {argument} The query to search for
+
+:LuceneSearchRegex {argument}                             *:LuceneSearchRegex*
+  Performs a Lucene regex search  {argument} The query to search for
+
+:LuceneSearchFromHereRegex {argument}             *:LuceneSearchFromHereRegex*
+  Performs a Lucene regex search starting from the current buffer's folder
+  {argument} The query to search for
+
+:LuceneSearchFromFolderRegex {argument}         *:LuceneSearchFromFolderRegex*
+  Performs a Lucene regex search starting from the specified folder. The user
+  will be asked for the folder {argument} The query to search for
+
+==============================================================================
+FUNCTIONS                                               *vim-lucene-functions*
+
+lucene#search({pattern}, {type}, [path])                     *lucene#search()*
+  This is the main function. It performs a search.  It connects to the port
+  set by g:Lucene_port and it queries for  {pattern}.
+
+  Parameters: {pattern} The pattern to search {type} The type of search to
+  perform (wild, regex or regular) See the Lucene        search syntax if you
+  are not familiar with what a wild search is. If the        type if wild,
+  then the pattern will be prefixed and suffixed with `*` [path] If set, then
+  return only the files which are found in the specified        folder
+
+
+vim:tw=78:ts=8:ft=help:norl:

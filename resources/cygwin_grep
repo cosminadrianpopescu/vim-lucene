@@ -1,0 +1,15 @@
+#!/bin/bash 
+
+dest=/tmp/grep-result
+
+files=""
+
+for file in `cygpath $@`
+do
+    if [ "$file" != "$1" ]
+    then
+        files="$files $file"
+    fi
+done
+
+grep -nri $1 $files >$dest
